@@ -10,26 +10,13 @@ public:
                     st.push(x);
                 }
                 else{
-                    if(st.top() < 0){
+                    while(!st.empty() && st.top() > 0 && st.top() < -x)
+                        st.pop();
+                    if(st.empty() || st.top() < 0)
                         st.push(x);
-                    }
-                    else{
-                        if(st.top() > abs(x))
-                            continue;
-                        else if(st.top() == abs(x))
-                            st.pop();
-                        else{
-                            while(st.size() > 0 && st.top() > 0 && st.top()  < abs(x))
-                                st.pop();
-                            if(st.empty() || st.top() < 0)
-                                st.push(x);
-                            else if(st.top() > 0 && st.top() == abs(x))
-                                st.pop();
-                            else
-                                continue;
-                        }
-                    }
-                }
+                    
+                    if(!st.empty() && st.top() == -x)
+                        st.pop();                }
             }
             else{
                 st.push(x);
